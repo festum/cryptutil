@@ -1,0 +1,16 @@
+*.key
+*.hash
+*.db
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.pem
+*.test
+*.out
+.env
+tmp/
+bin/
+vscode/
+vendor/
