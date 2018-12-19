@@ -6,7 +6,7 @@ import (
 )
 
 func TestInit(t *testing.T) {
-	c := cryptor{}
+	c := Cryptor{}
 	if err := c.Init(); err != nil {
 		t.Errorf("Init failed")
 	}
@@ -21,7 +21,7 @@ func TestInit(t *testing.T) {
 }
 
 func TestCryption(t *testing.T) {
-	c := cryptor{}
+	c := Cryptor{}
 	sample := "exampleplaintext"
 
 	enc, err := c.Encrypt([]byte(sample))
