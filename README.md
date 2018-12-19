@@ -13,11 +13,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/festum/cryptutil"
+	"github.com/festum/cryptutil/aes"
 )
 
 func main() {
-	c := cryptutil.cryptor{}
+	c := aes.Cryptor{}
 	c.Init()
 
 	sampleText := "Sample text"

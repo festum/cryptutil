@@ -12,12 +12,12 @@ import (
 	"io/ioutil"
 )
 
-type cryptor struct {
+type Cryptor struct {
 	keyPath string
 	block   cipher.Block
 }
 
-func (c *cryptor) Init() error {
+func (c *Cryptor) Init() error {
 	if c.keyPath == "" {
 		c.keyPath = "./aes.key"
 	}
@@ -50,7 +50,7 @@ func (c *cryptor) Init() error {
 	return nil
 }
 
-func (c *cryptor) Encrypt(src []byte) ([]byte, error) {
+func (c *Cryptor) Encrypt(src []byte) ([]byte, error) {
 	if c.block == nil {
 		if err := c.Init(); err != nil {
 			return nil, err
@@ -74,7 +74,7 @@ func (c *cryptor) Encrypt(src []byte) ([]byte, error) {
 	return ciphertext, nil
 }
 
-func (c *cryptor) Decrypt(ciphertext []byte) ([]byte, error) {
+func (c *Cryptor) Decrypt(ciphertext []byte) ([]byte, error) {
 	if len(ciphertext) < aes.BlockSize {
 		return nil, errors.New("Ciphertext is too short")
 	}
@@ -126,7 +126,7 @@ func pkcs7UnPadding(src []byte) ([]byte, error) {
 	return src[:(length - unpadding)], nil
 }
 
-func (c cryptor) readKey() ([]byte, error) {
+func (c Cryptor) readKey() ([]byte, error) {
 	key, err := ioutil.ReadFile(c.keyPath)
 	if err != nil {
 		return key, err
